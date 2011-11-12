@@ -44,6 +44,27 @@ class Context
 	end
 end
 
+class Primitive
+	def evaluate(context, list)
+		args = []
+		rest = list.rest
+		
+		while rest != nil
+			# TODO evaluate the items
+			args.push(rest.first)
+			rest = rest.rest
+		end
+		
+		return apply(context, args)
+	end
+end
+
+class FirstPrimitive < Primitive	
+	def apply(context, args)
+		return args[0].first
+	end
+end
+
 require 'test/unit'
 
 class ListTest < Test::Unit::TestCase
@@ -126,3 +147,17 @@ class ContextTest < Test::Unit::TestCase
 	end
 end
 
+class FirstPrimitiveTest < Test::Unit::TestCase
+	def test_simple_apply
+		list = List.new("a")
+		first = FirstPrimitive.new
+		assert_equal("a", first.apply(nil, [list]))
+	end
+	
+	def test_simple_evaluate
+		list = List.new("a")
+		form = List.new(FirstPrimitive.new, List.new(list))		
+		result = form.first.evaluate(nil, form)
+		assert_equal("a", result)
+	end
+end
