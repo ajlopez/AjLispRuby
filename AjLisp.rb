@@ -18,13 +18,18 @@ class NamedAtom
 end
 
 class Context
-	def initialize
+	def initialize(parent = nil)
+		@parent = parent
 		@values = Hash.new
 	end
 	
 	def getValue(name)
 		if @values.has_key?(name)
 			return @values[name]
+		end
+		
+		if @parent != nil
+			return @parent.getValue(name)
 		end
 		
 		return nil
@@ -92,4 +97,21 @@ class ContextTest < Test::Unit::TestCase
 		context.setValue("foo", "bar")
 		assert_equal("bar", context.getValue("foo"))
 	end
+	
+	def test_get_value_from_parent
+		parent = Context.new
+		parent.setValue("foo", "bar")
+		context = Context.new(parent)
+		assert_equal("bar", context.getValue("foo"))
+	end
+	
+	def test_override_value_from_parent
+		parent = Context.new
+		parent.setValue("foo", "bar")
+		context = Context.new(parent)
+		context.setValue("foo", "bar2")
+		assert_equal("bar2", context.getValue("foo"))
+		assert_equal("bar", parent.getValue("foo"))
+	end
 end
+
