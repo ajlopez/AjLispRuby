@@ -15,6 +15,10 @@ class NamedAtom
 	def initialize(name)
 		@name = name
 	end
+	
+	def evaluate(context)
+		return context.getValue(@name)
+	end
 end
 
 class Context
@@ -79,6 +83,13 @@ class NamedAtomTest < Test::Unit::TestCase
 		atom = NamedAtom.new("a")
 		assert_equal("a", atom.name)
 	end
+	
+	def test_evaluate_in_context
+		atom = NamedAtom.new("foo")
+		context = Context.new
+		context.setValue("foo", "bar")
+		assert_equal("bar", atom.evaluate(context))
+	end 
 end
 
 class ContextTest < Test::Unit::TestCase
