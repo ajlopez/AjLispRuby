@@ -17,6 +17,24 @@ class NamedAtom
 	end
 end
 
+class Context
+	def initialize
+		@values = Hash.new
+	end
+	
+	def getValue(name)
+		if @values.has_key?(name)
+			return @values[name]
+		end
+		
+		return nil
+	end
+	
+	def setValue(name, value)
+		@values[name] = value
+	end
+end
+
 require 'test/unit'
 
 class ListTest < Test::Unit::TestCase
@@ -55,5 +73,23 @@ class NamedAtomTest < Test::Unit::TestCase
 	def test_initialize
 		atom = NamedAtom.new("a")
 		assert_equal("a", atom.name)
+	end
+end
+
+class ContextTest < Test::Unit::TestCase
+	def test_initialize
+		context = Context.new
+		assert_not_nil(context)
+	end
+	
+	def test_not_defined_is_nil
+		context = Context.new
+		assert_nil(context.getValue("foo"))
+	end
+	
+	def test_set_and_get_value
+		context = Context.new
+		context.setValue("foo", "bar")
+		assert_equal("bar", context.getValue("foo"))
 	end
 end
