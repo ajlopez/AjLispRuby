@@ -13,4 +13,10 @@ require 'ajlisp/fprimitive_quote.rb'
 
 module AjLisp
 
+@context = Context.new
+@context.setValue "quote", FPrimitiveQuote.instance
+@context.setValue "first", PrimitiveFirst.instance
+@context.setValue "rest", PrimitiveRest.instance
+@context.setValue "cons", PrimitiveCons.instance
+
 end

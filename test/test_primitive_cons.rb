@@ -4,7 +4,7 @@ require 'test/unit'
 
 class TestPrimitiveCons < Test::Unit::TestCase
     def test_simple_apply
-        cons = AjLisp::PrimitiveCons.new
+        cons = AjLisp::PrimitiveCons.instance
         result = cons.apply(nil, ["a", nil])
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
@@ -13,7 +13,7 @@ class TestPrimitiveCons < Test::Unit::TestCase
 
     def test_apply
         list = AjLisp::List.new "b"
-        cons = AjLisp::PrimitiveCons.new
+        cons = AjLisp::PrimitiveCons.instance
         result = cons.apply(nil, ["a", list])
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
@@ -22,7 +22,7 @@ class TestPrimitiveCons < Test::Unit::TestCase
     end
     
     def test_simple_evaluate
-        form = AjLisp::List.new(AjLisp::PrimitiveCons.new, AjLisp::List.new("a"))		
+        form = AjLisp::List.new(AjLisp::PrimitiveCons.instance, AjLisp::List.new("a"))		
         result = form.first.evaluate(nil, form)
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
