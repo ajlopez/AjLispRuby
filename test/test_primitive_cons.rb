@@ -17,7 +17,7 @@ class TestPrimitiveCons < Test::Unit::TestCase
         result = cons.apply(nil, ["a", list])
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
-        assert_equal "b" result.rest.first
+        assert_equal "b", result.rest.first
         assert_nil result.rest.rest
     end
     

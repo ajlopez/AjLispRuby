@@ -9,6 +9,11 @@ class List
 		@first = first
 		@rest = rest
 	end
+    
+    def evaluate(context)
+        first = @first.evaluate(context)
+        first.evaluate(context, self)
+    end
 end
 
 end
