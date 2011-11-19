@@ -3,6 +3,10 @@ module AjLisp
 
 class FPrimitive
 	def evaluate(context, list)
+        if list == nil
+            return self
+        end
+    
 		args = []
 		rest = list.rest
 		

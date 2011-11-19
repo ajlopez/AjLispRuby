@@ -13,9 +13,11 @@ class Primitive
 		
 		return apply(context, args)
 	end
+
+    private
     
     def self.evaluateItem(context, item)
-        if item != nil and (item.is_a? List or item.is_a? NamedAtom)
+        if item.is_a? List or item.is_a? NamedAtom
             return item.evaluate(context)
         end
         

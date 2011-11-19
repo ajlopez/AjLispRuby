@@ -1,7 +1,7 @@
 
 module AjLisp
 
-class PrimitiveQuote < FPrimitive	
+class FPrimitiveQuote < FPrimitive	
 	def apply(context, args)
         return args[0]
 	end

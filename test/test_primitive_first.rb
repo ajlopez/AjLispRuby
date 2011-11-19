@@ -10,9 +10,9 @@ class TestPrimitiveFirst < Test::Unit::TestCase
 	end
 	
 	def test_simple_evaluate
-		list = AjLisp::List.new("a")
-		form = AjLisp::List.new(AjLisp::PrimitiveFirst.new, AjLisp::List.new(list))		
-		result = form.first.evaluate(nil, form)
+        quote = AjLisp::List.make [AjLisp::FPrimitiveQuote.new, ["a"]]
+		form = AjLisp::List.make [AjLisp::PrimitiveFirst.new, quote]
+		result = form.evaluate(nil)
 		assert_equal("a", result)
 	end
 end

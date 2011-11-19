@@ -10,9 +10,11 @@ class TestPrimitiveRest < Test::Unit::TestCase
 	end
 	
 	def test_simple_evaluate
-		list = AjLisp::List.new("a", AjLisp::List.new("b"))
-		form = AjLisp::List.new(AjLisp::PrimitiveRest.new, AjLisp::List.new(list))		
-		result = form.first.evaluate(nil, form)
-		assert_equal("b", result.first)
+		list = AjLisp::List.make [AjLisp::FPrimitiveQuote.new, ["a", "b"]]
+		form = AjLisp::List.make [AjLisp::PrimitiveRest.new, list]
+		result = form.evaluate(nil)
+        assert result.is_a? AjLisp::List
+		assert_equal "b", result.first
+        assert_nil result.rest
 	end
 end

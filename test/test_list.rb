@@ -31,4 +31,26 @@ class TestList < Test::Unit::TestCase
 		assert_equal("bar", list.rest.first)
 		assert_nil(list.rest.rest)
 	end
+    
+    def test_create_from_array
+        list = AjLisp::List.make [1, "a", "foo"]
+        assert_not_nil list
+        assert_equal 1, list.first
+        assert_equal "a", list.rest.first
+        assert_equal "foo", list.rest.rest.first
+        assert_nil list.rest.rest.rest
+    end
+    
+    def test_create_from_nested_array
+        list = AjLisp::List.make [1, ["a", "b"], "foo"]
+        assert_not_nil list
+        assert_equal 1, list.first
+        
+        assert_equal "a", list.rest.first.first
+        assert_equal "b", list.rest.first.rest.first
+        assert_nil list.rest.first.rest.rest
+        
+        assert_equal "foo", list.rest.rest.first
+        assert_nil list.rest.rest.rest
+    end
 end

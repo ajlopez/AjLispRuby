@@ -11,8 +11,32 @@ class List
 	end
     
     def evaluate(context)
-        first = @first.evaluate(context)
-        first.evaluate(context, self)
+        form = List::evaluateForm(context, @first)
+        form.evaluate(context, self)
+    end
+    
+    def self.make(array)
+        if array and array.length > 0
+            first = array.shift
+            
+            if first.is_a? Array
+                first = make(first)
+            end
+            
+            return List.new first, make(array)
+        end 
+        
+        return nil
+    end
+
+    private
+    
+    def self.evaluateForm(context, item)
+        if item.is_a? List or item.is_a? NamedAtom
+            return item.evaluate(context)
+        end
+        
+        return item
     end
 end
 
