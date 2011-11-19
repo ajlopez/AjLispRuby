@@ -2,6 +2,8 @@
 
 AjLispRb is a Lisp interpreter written in Ruby.
 
+There are other versions in C# and Javascript.
+
 ## License
 
 MIT License

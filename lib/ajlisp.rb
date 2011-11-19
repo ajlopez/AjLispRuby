@@ -8,6 +8,9 @@ require 'ajlisp/primitive_first.rb'
 require 'ajlisp/primitive_rest.rb'
 require 'ajlisp/primitive_cons.rb'
 
+require 'ajlisp/fprimitive.rb'
+require 'ajlisp/fprimitive_quote.rb'
+
 module AjLisp
 
 end
