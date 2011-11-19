@@ -19,4 +19,8 @@ module AjLisp
 @context.setValue "rest", PrimitiveRest.instance
 @context.setValue "cons", PrimitiveCons.instance
 
+def self.context
+    return @context
+end
+
 end

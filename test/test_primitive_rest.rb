@@ -17,4 +17,13 @@ class TestPrimitiveRest < Test::Unit::TestCase
 		assert_equal "b", result.first
         assert_nil result.rest
 	end
+	
+	def test_simple_evaluate_using_name
+		list = AjLisp::List.make [AjLisp::FPrimitiveQuote.instance, ["a", "b"]]
+		form = AjLisp::List.make [AjLisp::NamedAtom.new("rest"), list]
+		result = form.evaluate(AjLisp::context)
+        assert result.is_a? AjLisp::List
+		assert_equal "b", result.first
+        assert_nil result.rest
+	end
 end

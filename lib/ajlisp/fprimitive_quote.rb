@@ -5,7 +5,7 @@ class FPrimitiveQuote < FPrimitive
     private_class_method :new
     
     @@instance = nil
-    
+
     def self.instance
         @@instance = new unless @@instance
         return @@instance

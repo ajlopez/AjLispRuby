@@ -15,4 +15,11 @@ class TestPrimitiveFirst < Test::Unit::TestCase
 		result = form.evaluate(nil)
 		assert_equal("a", result)
 	end
+	
+	def test_simple_evaluate_with_name
+        quote = AjLisp::List.make [AjLisp::FPrimitiveQuote.instance, ["a"]]
+		form = AjLisp::List.make [AjLisp::NamedAtom.new("first"), quote]
+		result = form.evaluate(AjLisp::context)
+		assert_equal("a", result)
+	end
 end

@@ -11,4 +11,12 @@ class TestFPrimitiveQuote < Test::Unit::TestCase
         assert_equal "a", result.first
         assert_nil result.rest
 	end
+	
+	def test_simple_evaluate_with_name
+		form = AjLisp::List.make [AjLisp::NamedAtom.new("quote"), ["a"]]
+		result = form.evaluate(AjLisp::context)
+        assert_not_nil result
+		assert_equal "a", result.first
+        assert_nil result.rest
+	end
 end
