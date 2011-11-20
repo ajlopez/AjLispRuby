@@ -2,13 +2,13 @@
 module AjLisp
 
 class List
-	attr_reader :first
-	attr_reader :rest
-	
-	def initialize(first=nil, rest=nil)
-		@first = first
-		@rest = rest
-	end
+    attr_reader :first
+    attr_reader :rest
+    
+    def initialize(first=nil, rest=nil)
+        @first = first
+        @rest = rest
+    end
     
     def evaluate(context)
         form = List::evaluateForm(context, @first)
@@ -21,8 +21,10 @@ class List
             
             if first.is_a? Array
                 first = make(first)
+            elsif first.is_a? Symbol
+                first = NamedAtom.new first.to_s
             end
-            
+                        
             return List.new first, make(array)
         end 
         

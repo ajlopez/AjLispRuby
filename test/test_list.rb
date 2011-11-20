@@ -53,4 +53,14 @@ class TestList < Test::Unit::TestCase
         assert_equal "foo", list.rest.rest.first
         assert_nil list.rest.rest.rest
     end
+    
+    def test_create_from_array_with_symbols
+        list = AjLisp::List.make [1, :a, :foo]
+        assert_not_nil list
+        assert_equal 1, list.first
+        assert list.rest.first.is_a? AjLisp::NamedAtom
+		assert_equal "a", list.rest.first.name
+        assert list.rest.rest.first.is_a? AjLisp::NamedAtom
+		assert_equal "foo", list.rest.rest.first.name
+    end
 end
