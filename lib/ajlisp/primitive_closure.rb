@@ -1,7 +1,7 @@
 
 module AjLisp
 
-class PrimiviteClosure < Primitive
+class PrimitiveClosure < Primitive
     attr_reader :arguments
     attr_reader :body
     attr_reader :context
@@ -32,11 +32,9 @@ class PrimiviteClosure < Primitive
         end
         
         result = nil
-        body = @body
-        
-        while body
-            result = body.first.evaluate newcontext
-            body = body.rest
+
+        @body.each do |form|
+            result = form.evaluate newcontext
         end
         
         return result

@@ -12,7 +12,9 @@ class FPrimitiveLambda < FPrimitive
     end
     
     def apply(context, args)
-        # return args[0]
+        arguments = args[0]
+        args.shift
+        return PrimitiveClosure.new arguments, args, context
     end
 end
 

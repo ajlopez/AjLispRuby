@@ -5,7 +5,7 @@ class TestPrimitiveClosure < Test::Unit::TestCase
     def test_new_with_no_context
         arguments = AjLisp::List.make [ :a, :b ]
         body = AjLisp::List.make [[ :cons, :a, :b ]]
-        closure = AjLisp::PrimiviteClosure.new arguments, body
+        closure = AjLisp::PrimitiveClosure.new arguments, body
         assert_equal arguments, closure.arguments
         assert_equal body, closure.body
         assert_nil closure.context
@@ -13,8 +13,8 @@ class TestPrimitiveClosure < Test::Unit::TestCase
 
     def test_evaluate_simple_body
         arguments = AjLisp::List.make [ :a, :b ]
-        body = AjLisp::List.make [[ :cons, :a, :b ]]
-        closure = AjLisp::PrimiviteClosure.new arguments, body
+        body = [ AjLisp::List.make([ :cons, :a, :b ])]
+        closure = AjLisp::PrimitiveClosure.new arguments, body
         list = AjLisp::List.make [closure, "a", [:quote, [:b, :c]]]
         
         result = closure.evaluate(AjLisp::context, list)
