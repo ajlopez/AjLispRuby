@@ -13,7 +13,15 @@ class FPrimitiveDefine < FPrimitive
     
     def apply(context, args)
         atom = args[0]
-		value = AjLisp::evaluate(context, args[1])
+		
+		if args.length > 2
+			args.shift
+			arguments = args.shift
+			value = AjLisp::PrimitiveClosure.new arguments, args
+		else
+			value = AjLisp::evaluate(context, args[1])
+		end
+
 		AjLisp::context.setValue atom.name, value
 		return value
     end

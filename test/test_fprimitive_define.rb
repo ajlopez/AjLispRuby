@@ -41,5 +41,25 @@ class TestFPrimitiveDefine < Test::Unit::TestCase
 		assert_equal "c", result.rest.rest.first.name
 		assert_nil result.rest.rest.rest
     end
+
+    def test_evaluate_define_form
+        list = AjLisp::List.make [AjLisp::FPrimitiveDefine.instance, :mycons, [:a, :b], [:cons, :a, :b]]
+        
+        result = list.evaluate(AjLisp::context)
+
+		assert_not_nil result
+		assert result.is_a? AjLisp::PrimitiveClosure
+		
+		list = AjLisp::List.make [:mycons, 1, [:quote, [:b, :c]]]
+		
+		result = list.evaluate(AjLisp::context)
+		
+		assert_not_nil result
+		assert result.is_a? AjLisp::List
+		assert_equal 1, result.first
+		assert_equal "b", result.rest.first.name
+		assert_equal "c", result.rest.rest.first.name
+		assert_nil result.rest.rest.rest
+    end
 end
 
