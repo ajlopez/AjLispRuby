@@ -7,22 +7,12 @@ class Primitive
 		rest = list.rest
 		
 		while rest != nil
-			args.push(Primitive::evaluateItem(context, rest.first))
+			args.push(AjLisp::evaluate(context, rest.first))
 			rest = rest.rest
 		end
 		
 		return apply(context, args)
 	end
-
-    private
-    
-    def self.evaluateItem(context, item)
-        if item.is_a? List or item.is_a? NamedAtom
-            return item.evaluate(context)
-        end
-        
-        return item
-    end
 end
 
 end
