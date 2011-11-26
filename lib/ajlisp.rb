@@ -12,6 +12,7 @@ require 'ajlisp/primitive_closure.rb'
 require 'ajlisp/fprimitive.rb'
 require 'ajlisp/fprimitive_quote.rb'
 require 'ajlisp/fprimitive_lambda.rb'
+require 'ajlisp/fprimitive_let.rb'
 
 module AjLisp
 
@@ -21,9 +22,18 @@ module AjLisp
 @context.setValue "rest", PrimitiveRest.instance
 @context.setValue "cons", PrimitiveCons.instance
 @context.setValue "lambda", FPrimitiveLambda.instance
+@context.setValue "let", FPrimitiveLet.instance
 
 def self.context
     return @context
+end
+
+def self.evaluate(context, item)
+    if item.is_a? List or item.is_a? NamedAtom
+        return item.evaluate(context)
+    end
+        
+    return item	
 end
 
 end

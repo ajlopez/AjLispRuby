@@ -11,7 +11,7 @@ class List
     end
     
     def evaluate(context)
-        form = List::evaluateForm(context, @first)
+        form = AjLisp::evaluate(context, @first)
         form.evaluate(context, self)
     end
     
@@ -29,16 +29,6 @@ class List
         end 
         
         return nil
-    end
-
-    private
-    
-    def self.evaluateForm(context, item)
-        if item.is_a? List or item.is_a? NamedAtom
-            return item.evaluate(context)
-        end
-        
-        return item
     end
 end
 
