@@ -13,6 +13,7 @@ require 'ajlisp/fprimitive.rb'
 require 'ajlisp/fprimitive_quote.rb'
 require 'ajlisp/fprimitive_lambda.rb'
 require 'ajlisp/fprimitive_let.rb'
+require 'ajlisp/fprimitive_closure.rb'
 
 module AjLisp
 
