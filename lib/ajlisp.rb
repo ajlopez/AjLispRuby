@@ -15,10 +15,12 @@ require 'ajlisp/fprimitive_lambda.rb'
 require 'ajlisp/fprimitive_flambda.rb'
 require 'ajlisp/fprimitive_let.rb'
 require 'ajlisp/fprimitive_closure.rb'
+require 'ajlisp/fprimitive_define.rb'
 
 module AjLisp
 
 @context = Context.new
+
 @context.setValue "quote", FPrimitiveQuote.instance
 @context.setValue "first", PrimitiveFirst.instance
 @context.setValue "rest", PrimitiveRest.instance
@@ -26,6 +28,7 @@ module AjLisp
 @context.setValue "lambda", FPrimitiveLambda.instance
 @context.setValue "flambda", FPrimitiveFLambda.instance
 @context.setValue "let", FPrimitiveLet.instance
+@context.setValue "define", FPrimitiveDefine.instance
 
 def self.context
     return @context
