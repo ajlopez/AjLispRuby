@@ -6,9 +6,14 @@ class Lexer
 
 	def initialize(source)
 		@source = source
+		@tokens = []
 	end
 	
 	def nextToken
+		if @tokens.length > 0
+			return @tokens.pop
+		end
+		
 		char = @source.nextChar
 		
 		while char and char =~ /\s/
@@ -26,6 +31,10 @@ class Lexer
 		if char =~ /\w/
 			return nextAtom char
 		end
+	end
+	
+	def pushToken(token)
+		@tokens.push(token)
 	end
 	
 	private
