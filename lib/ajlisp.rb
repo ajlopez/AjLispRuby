@@ -11,6 +11,7 @@ require 'ajlisp/primitive.rb'
 require 'ajlisp/primitive_first.rb'
 require 'ajlisp/primitive_rest.rb'
 require 'ajlisp/primitive_cons.rb'
+require 'ajlisp/primitive_list.rb'
 require 'ajlisp/primitive_closure.rb'
 
 require 'ajlisp/fprimitive.rb'
