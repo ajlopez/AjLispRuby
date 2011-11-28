@@ -58,6 +58,24 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_nil result.rest.rest
 	end
 	
+	def test_evaluate_simple_define
+		result = evaluateText("(define one 1)")
+		
+		assert_not_nil result
+		assert_equal 1, AjLisp::context.getValue("one")
+	end
+	
+	def test_define_and_evaluate_simple_form
+		evaluateText("(define mycons (a b) (cons a b))")
+		result = evaluateText('(mycons (quote a) (quote (b)))')
+		
+		assert_not_nil result
+		assert result.is_a? List
+		assert_equal "a", result.first.name
+		assert_equal "b", result.rest.first.name
+		assert_nil result.rest.rest
+	end
+	
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
