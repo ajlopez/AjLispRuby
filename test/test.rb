@@ -6,6 +6,8 @@ require "test_list.rb"
 require "test_named_atom.rb"
 require "test_context.rb"
 require "test_string_source.rb"
+require "test_token.rb"
+require "test_lexer.rb"
 
 require "test_primitive_first.rb"
 require "test_primitive_rest.rb"
