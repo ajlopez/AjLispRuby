@@ -9,6 +9,10 @@ class Lexer
 	def nextToken
 		char = @source.nextChar
 		
+		while char and char =~ /\s/
+			char = @source.nextChar
+		end
+		
 		if char =~ /\w/
 			return nextAtom char
 		end
