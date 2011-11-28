@@ -83,6 +83,24 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_equal 3, result
 	end
 	
+	def test_define_form_with_closure
+		evaluateText("(define addx (x) (lambda (a) (+ a x)))")
+		evaluateText("(define addone (addx 1))")
+		result = evaluateText('(addone 3)')
+		
+		assert_not_nil result
+		assert result.is_a? Fixnum
+		assert_equal 4, result
+	end
+	
+	def test_define_form_with_free_variable
+		evaluateText("(define one 1)")
+		evaluateText("(define addone (x) (+ x one))")
+		assert_equal 4, evaluateText('(addone 3)')
+		evaluateText("(define one 2)")
+		assert_equal 5, evaluateText('(addone 3)')
+	end
+	
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
