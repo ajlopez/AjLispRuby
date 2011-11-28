@@ -48,6 +48,16 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_nil result.rest.rest
 	end
 	
+	def test_evaluate_simple_list
+		result = evaluateText("(list (quote a) (quote b))")
+		
+		assert_not_nil result
+		assert result.is_a? List
+		assert_equal "a", result.first.name
+		assert_equal "b", result.rest.first.name
+		assert_nil result.rest.rest
+	end
+	
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source

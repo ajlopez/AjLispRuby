@@ -30,6 +30,7 @@ module AjLisp
 @context.setValue "first", PrimitiveFirst.instance
 @context.setValue "rest", PrimitiveRest.instance
 @context.setValue "cons", PrimitiveCons.instance
+@context.setValue "list", PrimitiveList.instance
 @context.setValue "lambda", FPrimitiveLambda.instance
 @context.setValue "flambda", FPrimitiveFLambda.instance
 @context.setValue "let", FPrimitiveLet.instance
