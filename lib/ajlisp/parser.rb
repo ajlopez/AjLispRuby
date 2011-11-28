@@ -30,7 +30,7 @@ class Parser
 			elements = []
 			token = @lexer.nextToken
 			
-			while not (token.type == TokenType::SEPARATOR or token.value == ")")
+			while not (token.type == TokenType::SEPARATOR and token.value == ")")
 				@lexer.pushToken token
 				elements.push parseExpression
 				token = @lexer.nextToken

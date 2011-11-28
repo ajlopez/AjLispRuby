@@ -46,7 +46,7 @@ class TestParser < Test::Unit::TestCase
 		assert_nil parser.parseExpression
 	end
 
-	def test_parse_list
+	def test_parse_simple_list
 		source = StringSource.new "(foo bar)"
 		lexer = Lexer.new source
 		parser = Parser.new lexer
@@ -58,6 +58,38 @@ class TestParser < Test::Unit::TestCase
 		assert_equal "foo", expr.first.name
 		assert_equal "bar", expr.rest.first.name
 		assert_nil expr.rest.rest
+		
+		assert_nil parser.parseExpression
+	end
+
+	def test_parse_list_with_list
+		source = StringSource.new "(cons (a b))"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? List
+		assert_equal "cons", expr.first.name
+		assert expr.rest.is_a? List
+		
+		assert_nil parser.parseExpression
+	end
+
+	def test_parse_list_with_two_lists
+		source = StringSource.new "(cons (quote a) (quote (a b)))"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? List
+		assert_equal "cons", expr.first.name
+		assert expr.rest.is_a? List
+		assert expr.rest.first.is_a? List
+		assert expr.rest.rest.first.is_a? List
 		
 		assert_nil parser.parseExpression
 	end
