@@ -39,6 +39,8 @@ class Lexer
 		if char =~ /\w/
 			return nextAtom char
 		end
+		
+		return Token.new char, TokenType::ATOM
 	end
 	
 	def pushToken(token)

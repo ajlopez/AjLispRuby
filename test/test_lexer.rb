@@ -73,6 +73,17 @@ class TestLexer < Test::Unit::TestCase
 		assert_nil lexer.nextToken
 	end
 	
+	def test_get_add
+		source = StringSource.new "+"
+		lexer = Lexer.new source
+		token = lexer.nextToken
+		
+		assert_not_nil token
+		assert_equal "+", token.value
+		assert_equal TokenType::ATOM, token.type
+		assert_nil lexer.nextToken
+	end
+	
 	def test_get_string
 		source = StringSource.new '"foo"'
 		lexer = Lexer.new source

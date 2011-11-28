@@ -76,6 +76,13 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_nil result.rest.rest
 	end
 	
+	def test_evaluate_simple_add
+		result = evaluateText("(+ 1 2)")
+		assert_not_nil result
+		assert result.is_a? Fixnum
+		assert_equal 3, result
+	end
+	
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
