@@ -2,6 +2,8 @@
 module AjLisp
 
 class Lexer
+	@@separators = "()"
+
 	def initialize(source)
 		@source = source
 	end
@@ -11,6 +13,14 @@ class Lexer
 		
 		while char and char =~ /\s/
 			char = @source.nextChar
+		end
+		
+		if char == nil
+			return nil
+		end
+		
+		if @@separators.include? char
+			return Token.new char, TokenType::SEPARATOR
 		end
 		
 		if char =~ /\w/

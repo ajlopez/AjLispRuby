@@ -43,6 +43,24 @@ class TestLexer < Test::Unit::TestCase
 		
 		assert_nil lexer.nextToken
 	end
+
+	def test_get_parentheses
+		source = StringSource.new "()"
+		lexer = Lexer.new source
+		token = lexer.nextToken
+		
+		assert_not_nil token
+		assert_equal "(", token.value
+		assert_equal TokenType::SEPARATOR, token.type
+
+		token = lexer.nextToken
+		
+		assert_not_nil token
+		assert_equal ")", token.value
+		assert_equal TokenType::SEPARATOR, token.type
+		
+		assert_nil lexer.nextToken
+	end
 end
 
 end
