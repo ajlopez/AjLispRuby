@@ -61,6 +61,28 @@ class TestLexer < Test::Unit::TestCase
 		
 		assert_nil lexer.nextToken
 	end
+	
+	def test_get_integer
+		source = StringSource.new "123"
+		lexer = Lexer.new source
+		token = lexer.nextToken
+		
+		assert_not_nil token
+		assert_equal "123", token.value
+		assert_equal TokenType::INTEGER, token.type
+		assert_nil lexer.nextToken
+	end
+	
+	def test_get_string
+		source = StringSource.new '"foo"'
+		lexer = Lexer.new source
+		token = lexer.nextToken
+		
+		assert_not_nil token
+		assert_equal "foo", token.value
+		assert_equal TokenType::STRING, token.type
+		assert_nil lexer.nextToken
+	end
 end
 
 end

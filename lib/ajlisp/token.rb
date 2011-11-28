@@ -13,9 +13,10 @@ end
 
 class TokenType
 	INTEGER = 1
-	STRING = 2
-	ATOM = 3
-	SEPARATOR = 4
+	REAL = 2
+	STRING = 3
+	ATOM = 4
+	SEPARATOR = 5
 end
 
 end

@@ -18,6 +18,14 @@ class Parser
 			return NamedAtom.new token.value
 		end
 		
+		if token.type == TokenType::INTEGER
+			return token.value.to_i
+		end
+		
+		if token.type == TokenType::STRING
+			return token.value
+		end
+		
 		if token.type == TokenType::SEPARATOR and token.value == "("
 			elements = []
 			token = @lexer.nextToken

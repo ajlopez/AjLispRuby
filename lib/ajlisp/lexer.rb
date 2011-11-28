@@ -24,8 +24,16 @@ class Lexer
 			return nil
 		end
 		
+		if char == ?"
+			return nextString
+		end
+		
 		if @@separators.include? char
 			return Token.new char, TokenType::SEPARATOR
+		end
+
+		if char =~ /\d/
+			return nextInteger char
 		end
 		
 		if char =~ /\w/
@@ -39,6 +47,23 @@ class Lexer
 	
 	private
 	
+	def nextString
+		value = ""
+		
+		char = @source.nextChar
+		
+		while char
+			if char != ?"
+				value += char
+				char = @source.nextChar
+			else
+				break
+			end
+		end
+		
+		return Token.new value, TokenType::STRING
+	end
+
 	def nextAtom(firstch)
 		value = firstch
 		
@@ -55,6 +80,24 @@ class Lexer
 		end
 		
 		return Token.new value, TokenType::ATOM
+	end
+
+	def nextInteger(firstch)
+		value = firstch
+		
+		char = @source.nextChar
+		
+		while char
+			if char =~ /\d/
+				value += char
+				char = @source.nextChar
+			else
+				@source.pushChar char
+				break
+			end
+		end
+		
+		return Token.new value, TokenType::INTEGER
 	end
 end
 

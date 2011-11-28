@@ -18,6 +18,34 @@ class TestParser < Test::Unit::TestCase
 		assert_nil parser.parseExpression
 	end
 
+	def test_parse_integer
+		source = StringSource.new "123"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? Fixnum
+		assert_equal 123, expr
+		
+		assert_nil parser.parseExpression
+	end
+
+	def test_parse_string
+		source = StringSource.new '"foo"'
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? String
+		assert_equal "foo", expr
+		
+		assert_nil parser.parseExpression
+	end
+
 	def test_parse_list
 		source = StringSource.new "(foo bar)"
 		lexer = Lexer.new source
