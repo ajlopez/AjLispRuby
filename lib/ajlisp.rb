@@ -22,6 +22,8 @@ require 'ajlisp/fprimitive_let.rb'
 require 'ajlisp/fprimitive_closure.rb'
 require 'ajlisp/fprimitive_define.rb'
 
+require 'ajlisp/primitive_add.rb'
+
 module AjLisp
 
 @context = Context.new
@@ -35,6 +37,8 @@ module AjLisp
 @context.setValue "flambda", FPrimitiveFLambda.instance
 @context.setValue "let", FPrimitiveLet.instance
 @context.setValue "define", FPrimitiveDefine.instance
+
+@context.setValue "+", PrimitiveAdd.instance
 
 def self.context
     return @context

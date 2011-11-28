@@ -16,6 +16,8 @@ require "test_primitive_cons.rb"
 require "test_primitive_list.rb"
 require "test_primitive_closure.rb"
 
+require "test_primitive_add.rb"
+
 require "test_fprimitive_quote.rb"
 require "test_fprimitive_lambda.rb"
 require "test_fprimitive_let.rb"
