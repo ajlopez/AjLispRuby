@@ -19,6 +19,7 @@ require 'ajlisp/fprimitive.rb'
 require 'ajlisp/fprimitive_quote.rb'
 require 'ajlisp/fprimitive_lambda.rb'
 require 'ajlisp/fprimitive_flambda.rb'
+require 'ajlisp/fprimitive_mlambda.rb'
 require 'ajlisp/fprimitive_let.rb'
 require 'ajlisp/fprimitive_closure.rb'
 require 'ajlisp/fprimitive_macro_closure.rb'
@@ -40,6 +41,7 @@ module AjLisp
 @context.setValue "list", PrimitiveList.instance
 @context.setValue "lambda", FPrimitiveLambda.instance
 @context.setValue "flambda", FPrimitiveFLambda.instance
+@context.setValue "mlambda", FPrimitiveMLambda.instance
 @context.setValue "let", FPrimitiveLet.instance
 @context.setValue "define", FPrimitiveDefine.instance
 @context.setValue "do", FPrimitiveDo.instance
