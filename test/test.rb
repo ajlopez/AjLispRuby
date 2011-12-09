@@ -28,6 +28,7 @@ require "test_fprimitive_define.rb"
 require "test_fprimitive_definef.rb"
 require "test_fprimitive_do.rb"
 require "test_fprimitive_if.rb"
+require "test_fprimitive_macro_closure.rb"
 
 require "test_evaluate"
 require "test_evaluate_files"
