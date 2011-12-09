@@ -34,7 +34,7 @@ class FPrimitiveClosure < FPrimitive
         result = nil
 
         @body.each do |form|
-            result = form.evaluate newcontext
+            result = AjLisp::evaluate newcontext, form
         end
         
         return result
