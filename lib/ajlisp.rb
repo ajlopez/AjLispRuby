@@ -23,6 +23,7 @@ require 'ajlisp/fprimitive_let.rb'
 require 'ajlisp/fprimitive_closure.rb'
 require 'ajlisp/fprimitive_define.rb'
 require 'ajlisp/fprimitive_do.rb'
+require 'ajlisp/fprimitive_if.rb'
 
 require 'ajlisp/primitive_add.rb'
 
@@ -40,6 +41,7 @@ module AjLisp
 @context.setValue "let", FPrimitiveLet.instance
 @context.setValue "define", FPrimitiveDefine.instance
 @context.setValue "do", FPrimitiveDo.instance
+@context.setValue "if", FPrimitiveIf.instance
 
 @context.setValue "+", PrimitiveAdd.instance
 

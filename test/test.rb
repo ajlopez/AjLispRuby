@@ -26,6 +26,7 @@ require "test_fprimitive_closure.rb"
 require "test_fprimitive_flambda.rb"
 require "test_fprimitive_define.rb"
 require "test_fprimitive_do.rb"
+require "test_fprimitive_if.rb"
 
 require "test_evaluate"
 require "test_evaluate_files"

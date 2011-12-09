@@ -15,7 +15,7 @@ class FPrimitiveDo < FPrimitive
 		result = nil
 		
 		args.each do |arg|
-			result = arg.evaluate context
+			result = AjLisp::evaluate context, arg
 		end
 
 		return result

@@ -1,7 +1,7 @@
 
 module AjLisp
 
-class FPrimitiveLet < FPrimitive	
+class FPrimitiveIf < FPrimitive	
     private_class_method :new
     
     @@instance = nil
@@ -12,19 +12,15 @@ class FPrimitiveLet < FPrimitive
     end
     
     def apply(context, args)
-        arguments = args[0]
+        condition = args[0]
         args.shift
-		
-		newcontext = AjLisp::Context.new context
-		
-		while arguments
-			pair = arguments.first
-			atom = pair.first
-			value = AjLisp::evaluate(context, pair.rest.first)
-			newcontext.setValue atom.name, value
-			arguments = arguments.rest
-		end
-		
+        thenform = args[0]
+        args.shift
+        
+        if AjLisp::evaluate context, condition
+            return AjLisp::evaluate context, thenform
+        end
+        
 		result = nil
 		
 		args.each do |arg|
