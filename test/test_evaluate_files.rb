@@ -13,6 +13,15 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal 3, AjLisp::context.getValue("three")
 	end
 	
+	def test_evaluate_dodefine123
+		result = evaluateFile("dodefine123.lsp")
+		
+        assert_equal 3, result
+        assert_equal 1, AjLisp::context.getValue("one")
+        assert_equal 2, AjLisp::context.getValue("two")
+        assert_equal 3, AjLisp::context.getValue("three")
+	end
+	
 	def evaluateFile(filename)    
 		source = FileSource.new File.expand_path(filename, File.dirname(__FILE__))
 		lexer = Lexer.new source
