@@ -25,6 +25,7 @@ require "test_fprimitive_let.rb"
 require "test_fprimitive_closure.rb"
 require "test_fprimitive_flambda.rb"
 require "test_fprimitive_define.rb"
+require "test_fprimitive_definef.rb"
 require "test_fprimitive_do.rb"
 require "test_fprimitive_if.rb"
 
