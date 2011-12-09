@@ -22,6 +22,16 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal 3, AjLisp::context.getValue("three")
 	end
 	
+	def test_evaluate_mycons
+		result = evaluateFile("mycons.lsp")
+		
+		assert_not_nil result
+		assert result.is_a? List
+		assert_equal "a", result.first.name
+		assert_equal "b", result.rest.first.name
+		assert_nil result.rest.rest
+	end
+	
 	def evaluateFile(filename)    
 		source = FileSource.new File.expand_path(filename, File.dirname(__FILE__))
 		lexer = Lexer.new source
