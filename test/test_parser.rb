@@ -153,6 +153,37 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_nil parser.parseExpression
 	end
+
+	def test_parse_quoted_atom
+		source = StringSource.new "'a"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? List
+		assert_equal :quote, expr.first.name
+        assert_equal :a, expr.rest.first.name
+		
+		assert_nil parser.parseExpression
+	end
+
+	def test_parse_quoted_list
+		source = StringSource.new "'(a b)"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? List
+		assert_equal :quote, expr.first.name
+        assert_equal :a, expr.rest.first.first.name
+        assert_equal :b, expr.rest.first.rest.first.name
+		
+		assert_nil parser.parseExpression
+	end
 end
 
 end

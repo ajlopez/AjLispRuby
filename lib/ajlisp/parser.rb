@@ -23,6 +23,10 @@ class Parser
                 return AtConstantAtom.new token.value
             end
             
+            if token.value[0,1] == "'"
+                return List.make [NamedAtom.new("quote"), parseExpression]
+            end
+
 			return NamedAtom.new token.value
 		end
 		
