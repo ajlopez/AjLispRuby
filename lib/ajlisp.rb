@@ -33,6 +33,9 @@ require 'ajlisp/fprimitive_definef.rb'
 require 'ajlisp/fprimitive_definem.rb'
 
 require 'ajlisp/primitive_add.rb'
+require 'ajlisp/primitive_subtract.rb'
+require 'ajlisp/primitive_multiply.rb'
+require 'ajlisp/primitive_divide.rb'
 
 module AjLisp
 
@@ -54,6 +57,9 @@ module AjLisp
 @context.setValue :definem, FPrimitiveDefinem.instance
 
 @context.setValue :+, PrimitiveAdd.instance
+@context.setValue :-, PrimitiveSubtract.instance
+@context.setValue :*, PrimitiveMultiply.instance
+@context.setValue :/, PrimitiveDivide.instance
 
 def self.context
     return @context

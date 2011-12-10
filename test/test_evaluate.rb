@@ -121,6 +121,32 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_equal AjLisp::List, result
 	end
     
+	def test_evaluate_add
+		assert_equal 3, evaluateText('(+ 1 2)')
+		assert_equal 6, evaluateText('(+ 1 2 3)')
+		assert_equal 1, evaluateText('(+ 1)')
+		assert_equal 0, evaluateText('(+)')
+	end
+    
+	def test_evaluate_subtract
+		assert_equal -1, evaluateText('(- 1 2)')
+		assert_equal -4, evaluateText('(- 1 2 3)')
+		assert_equal 1, evaluateText('(- 1)')
+	end
+    
+	def test_evaluate_multiply
+		assert_equal 2, evaluateText('(* 1 2)')
+		assert_equal 6, evaluateText('(* 1 2 3)')
+		assert_equal 1, evaluateText('(* 1)')
+		assert_equal 1, evaluateText('(*)')
+	end
+    
+	def test_evaluate_divide
+		assert_equal 2, evaluateText('(/ 4 2)')
+		assert_equal 2, evaluateText('(/ 8 2 2)')
+		assert_equal 1, evaluateText('(/ 1)')
+	end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
