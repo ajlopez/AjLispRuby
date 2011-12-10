@@ -124,6 +124,20 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_nil parser.parseExpression
 	end
+
+	def test_parse_verb_atom		
+		source = StringSource.new ".do"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? DotVerbAtom
+		assert_equal ".do".intern, expr.name
+		
+		assert_nil parser.parseExpression
+	end
 end
 
 end

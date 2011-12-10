@@ -35,6 +35,10 @@ class Lexer
 		if char =~ /\d/
 			return nextInteger char
 		end
+        
+        if char == ?.
+            return nextSpecialAtom char
+        end
 		
 		if char =~ /\w/
 			return nextAtom char
@@ -73,6 +77,24 @@ class Lexer
 		
 		while char
 			if char =~ /\w/
+				value += char
+				char = @source.nextChar
+			else
+				@source.pushChar char
+				break
+			end
+		end
+		
+		return Token.new value, TokenType::ATOM
+	end
+
+	def nextSpecialAtom(firstch)
+		value = firstch
+		
+		char = @source.nextChar
+		
+		while char
+			if not char =~ /\s/ and not @@separators.include? char
 				value += char
 				char = @source.nextChar
 			else

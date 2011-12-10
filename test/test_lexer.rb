@@ -94,6 +94,28 @@ class TestLexer < Test::Unit::TestCase
         assert_equal TokenType::STRING, token.type
         assert_nil lexer.nextToken
     end
+
+    def test_get_verb_atom_token
+        source = StringSource.new ".verb"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal ".verb", token.value
+        assert_equal TokenType::ATOM, token.type
+        assert_nil lexer.nextToken
+    end
+
+    def test_get_verb_atom_token_with_question_mark
+        source = StringSource.new ".include?"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal ".include?", token.value
+        assert_equal TokenType::ATOM, token.type
+        assert_nil lexer.nextToken
+    end
 end
 
 end

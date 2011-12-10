@@ -15,6 +15,10 @@ class Parser
 		end
 		
 		if token.type == TokenType::ATOM
+            if token.value[0,1] == "."
+                return DotVerbAtom.new token.value
+            end
+            
 			return NamedAtom.new token.value
 		end
 		
