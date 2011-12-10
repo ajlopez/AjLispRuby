@@ -100,7 +100,17 @@ class TestEvaluate < Test::Unit::TestCase
 		evaluateText("(define one 2)")
 		assert_equal 5, evaluateText('(addone 3)')
 	end
-	
+		
+	def test_evaluate_native_method_arity_0
+		result = evaluateText('(.length "foo")')
+		assert_equal 3, result
+	end
+		
+	def test_evaluate_native_method_arity_1
+		result = evaluateText('(.include? "foo" "o")')
+		assert_equal true, result
+	end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
