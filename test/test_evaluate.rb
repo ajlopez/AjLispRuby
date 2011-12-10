@@ -128,6 +128,10 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_equal 0, evaluateText('(+)')
 	end
     
+	def test_evaluate_add_string
+		assert_equal "foobar", evaluateText('(+ "foo" "bar")')
+	end
+    
 	def test_evaluate_subtract
 		assert_equal -1, evaluateText('(- 1 2)')
 		assert_equal -4, evaluateText('(- 1 2 3)')
