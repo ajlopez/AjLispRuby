@@ -12,6 +12,6 @@ class TestFPrimitiveMacroClosure < Test::Unit::TestCase
         
         assert_not_nil result
         assert result.is_a? AjLisp::NamedAtom
-        assert_equal "b", result.name
+        assert_equal :b, result.name
     end
 end

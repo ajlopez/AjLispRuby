@@ -22,7 +22,7 @@ class List
             if first.is_a? Array
                 first = make(first)
             elsif first.is_a? Symbol
-                first = NamedAtom.new first.to_s
+                first = NamedAtom.new first
             end
                         
             return List.new first, make(array)

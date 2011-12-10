@@ -8,8 +8,8 @@ class TestFPrimitiveFLambda < Test::Unit::TestCase
         result = list.evaluate(AjLisp::context)
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
-        assert_equal "b", result.rest.first.name
-        assert_equal "c", result.rest.rest.first.name
+        assert_equal :b, result.rest.first.name
+        assert_equal :c, result.rest.rest.first.name
         assert_nil result.rest.rest.rest
 	end
 end

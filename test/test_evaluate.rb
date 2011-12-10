@@ -25,7 +25,7 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? NamedAtom
-		assert_equal "a", result.name
+		assert_equal :a, result.name
 	end
 	
 	def test_evaluate_quoted_list
@@ -33,8 +33,8 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? List
-		assert_equal "a", result.first.name
-		assert_equal "b", result.rest.first.name
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
 		assert_nil result.rest.rest
 	end
 
@@ -43,8 +43,8 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? List
-		assert_equal "a", result.first.name
-		assert_equal "b", result.rest.first.name
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
 		assert_nil result.rest.rest
 	end
 	
@@ -53,8 +53,8 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? List
-		assert_equal "a", result.first.name
-		assert_equal "b", result.rest.first.name
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
 		assert_nil result.rest.rest
 	end
 	
@@ -62,7 +62,7 @@ class TestEvaluate < Test::Unit::TestCase
 		result = evaluateText("(define one 1)")
 		
 		assert_not_nil result
-		assert_equal 1, AjLisp::context.getValue("one")
+		assert_equal 1, AjLisp::context.getValue(:one)
 	end
 	
 	def test_define_and_evaluate_simple_form
@@ -71,8 +71,8 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? List
-		assert_equal "a", result.first.name
-		assert_equal "b", result.rest.first.name
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
 		assert_nil result.rest.rest
 	end
 	

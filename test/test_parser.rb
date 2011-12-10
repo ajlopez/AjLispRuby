@@ -13,7 +13,7 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? NamedAtom
-		assert_equal "atom", expr.name
+		assert_equal :atom, expr.name
 		
 		assert_nil parser.parseExpression
 	end
@@ -27,7 +27,7 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? NamedAtom
-		assert_equal "+", expr.name
+		assert_equal :+, expr.name
 		
 		assert_nil parser.parseExpression
 	end
@@ -69,8 +69,8 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? List
-		assert_equal "foo", expr.first.name
-		assert_equal "bar", expr.rest.first.name
+		assert_equal :foo, expr.first.name
+		assert_equal :bar, expr.rest.first.name
 		assert_nil expr.rest.rest
 		
 		assert_nil parser.parseExpression
@@ -85,7 +85,7 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? List
-		assert_equal "+", expr.first.name
+		assert_equal :+, expr.first.name
 		assert_equal 1, expr.rest.first
 		assert_equal 2, expr.rest.rest.first
 		assert_nil expr.rest.rest.rest
@@ -102,7 +102,7 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? List
-		assert_equal "cons", expr.first.name
+		assert_equal :cons, expr.first.name
 		assert expr.rest.is_a? List
 		
 		assert_nil parser.parseExpression
@@ -117,7 +117,7 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_not_nil expr
 		assert expr.is_a? List
-		assert_equal "cons", expr.first.name
+		assert_equal :cons, expr.first.name
 		assert expr.rest.is_a? List
 		assert expr.rest.first.is_a? List
 		assert expr.rest.rest.first.is_a? List

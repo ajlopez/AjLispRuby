@@ -8,7 +8,7 @@ class TestFPrimitiveDefine < Test::Unit::TestCase
         result = list.evaluate(AjLisp::context)
 
 		assert_equal 1, result
-		assert_equal 1, AjLisp::context.getValue("a")
+		assert_equal 1, AjLisp::context.getValue(:a)
     end
 
     def test_evaluate_define_two_atoms
@@ -19,8 +19,8 @@ class TestFPrimitiveDefine < Test::Unit::TestCase
         result = list.evaluate(AjLisp::context)
 
 		assert_equal 1, result
-		assert_equal 1, AjLisp::context.getValue("a")
-		assert_equal 1, AjLisp::context.getValue("b")
+		assert_equal 1, AjLisp::context.getValue(:a)
+		assert_equal 1, AjLisp::context.getValue(:b)
     end
 
     def test_evaluate_define_atom_as_lambda
@@ -37,8 +37,8 @@ class TestFPrimitiveDefine < Test::Unit::TestCase
 		assert_not_nil result
 		assert result.is_a? AjLisp::List
 		assert_equal 1, result.first
-		assert_equal "b", result.rest.first.name
-		assert_equal "c", result.rest.rest.first.name
+		assert_equal :b, result.rest.first.name
+		assert_equal :c, result.rest.rest.first.name
 		assert_nil result.rest.rest.rest
     end
 
@@ -57,8 +57,8 @@ class TestFPrimitiveDefine < Test::Unit::TestCase
 		assert_not_nil result
 		assert result.is_a? AjLisp::List
 		assert_equal 1, result.first
-		assert_equal "b", result.rest.first.name
-		assert_equal "c", result.rest.rest.first.name
+		assert_equal :b, result.rest.first.name
+		assert_equal :c, result.rest.rest.first.name
 		assert_nil result.rest.rest.rest
     end
 end

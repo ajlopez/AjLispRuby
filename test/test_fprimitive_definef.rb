@@ -7,14 +7,14 @@ class TestFPrimitiveDefinef < Test::Unit::TestCase
         
         result = list.evaluate(AjLisp::context)
 
-		assert_not_nil AjLisp::context.getValue("myquote")
+		assert_not_nil AjLisp::context.getValue(:myquote)
         
         list = AjLisp::List.make [:myquote, :a]
         result = list.evaluate(AjLisp::context)
         
         assert_not_nil result
 		assert result.is_a? AjLisp::NamedAtom
-        assert_equal "a", result.name
+        assert_equal :a, result.name
     end
 end
 

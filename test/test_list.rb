@@ -59,8 +59,8 @@ class TestList < Test::Unit::TestCase
         assert_not_nil list
         assert_equal 1, list.first
         assert list.rest.first.is_a? AjLisp::NamedAtom
-        assert_equal "a", list.rest.first.name
+        assert_equal :a, list.rest.first.name
         assert list.rest.rest.first.is_a? AjLisp::NamedAtom
-        assert_equal "foo", list.rest.rest.first.name
+        assert_equal :foo, list.rest.rest.first.name
     end
 end

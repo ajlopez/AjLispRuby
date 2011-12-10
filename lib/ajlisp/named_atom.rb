@@ -5,7 +5,13 @@ class NamedAtom
     attr_reader :name
     
     def initialize(name)
-        @name = name
+        if name.is_a? String
+            @name = name.intern
+        elsif name.is_a? Symbol
+            @name = name
+        else
+            raise "Name of Atom should be an String or Sysmbol"
+        end
     end
     
     def evaluate(context)

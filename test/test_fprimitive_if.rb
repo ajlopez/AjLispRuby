@@ -10,8 +10,8 @@ class TestFPrimitiveIf < Test::Unit::TestCase
 
         assert_not_nil result
         assert_equal 3, result
-		assert_nil AjLisp::context.getValue("b1")
-		assert_equal 3, AjLisp::context.getValue("c1")
+		assert_nil AjLisp::context.getValue(:b1)
+		assert_equal 3, AjLisp::context.getValue(:c1)
     end
 
     def test_evaluate_if_true
@@ -22,8 +22,8 @@ class TestFPrimitiveIf < Test::Unit::TestCase
 
         assert_not_nil result
         assert_equal 2, result
-		assert_equal 2, AjLisp::context.getValue("b2")
-		assert_nil AjLisp::context.getValue("c2")
+		assert_equal 2, AjLisp::context.getValue(:b2)
+		assert_nil AjLisp::context.getValue(:c2)
     end
 end
 

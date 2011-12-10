@@ -8,18 +8,18 @@ class TestEvaluate < Test::Unit::TestCase
 		result = evaluateFile("define123.lsp")
 		
         assert_equal 3, result
-        assert_equal 1, AjLisp::context.getValue("one")
-        assert_equal 2, AjLisp::context.getValue("two")
-        assert_equal 3, AjLisp::context.getValue("three")
+        assert_equal 1, AjLisp::context.getValue(:one)
+        assert_equal 2, AjLisp::context.getValue(:two)
+        assert_equal 3, AjLisp::context.getValue(:three)
 	end
 	
 	def test_evaluate_dodefine123
 		result = evaluateFile("dodefine123.lsp")
 		
         assert_equal 3, result
-        assert_equal 1, AjLisp::context.getValue("one")
-        assert_equal 2, AjLisp::context.getValue("two")
-        assert_equal 3, AjLisp::context.getValue("three")
+        assert_equal 1, AjLisp::context.getValue(:one)
+        assert_equal 2, AjLisp::context.getValue(:two)
+        assert_equal 3, AjLisp::context.getValue(:three)
 	end
 	
 	def test_evaluate_mycons
@@ -27,8 +27,8 @@ class TestEvaluate < Test::Unit::TestCase
 		
 		assert_not_nil result
 		assert result.is_a? List
-		assert_equal "a", result.first.name
-		assert_equal "b", result.rest.first.name
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
 		assert_nil result.rest.rest
 	end
 	

@@ -22,8 +22,8 @@ class TestFPrimitiveClosure < Test::Unit::TestCase
         assert_not_nil result
         assert result.is_a? AjLisp::List
         assert_equal "a", result.first
-        assert_equal "b", result.rest.first.name
-        assert_equal "c", result.rest.rest.first.name
+        assert_equal :b, result.rest.first.name
+        assert_equal :c, result.rest.rest.first.name
         assert_nil result.rest.rest.rest
     end
 end

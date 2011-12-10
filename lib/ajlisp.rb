@@ -35,22 +35,22 @@ module AjLisp
 
 @context = Context.new
 
-@context.setValue "quote", FPrimitiveQuote.instance
-@context.setValue "first", PrimitiveFirst.instance
-@context.setValue "rest", PrimitiveRest.instance
-@context.setValue "cons", PrimitiveCons.instance
-@context.setValue "list", PrimitiveList.instance
-@context.setValue "lambda", FPrimitiveLambda.instance
-@context.setValue "flambda", FPrimitiveFLambda.instance
-@context.setValue "mlambda", FPrimitiveMLambda.instance
-@context.setValue "let", FPrimitiveLet.instance
-@context.setValue "define", FPrimitiveDefine.instance
-@context.setValue "do", FPrimitiveDo.instance
-@context.setValue "if", FPrimitiveIf.instance
-@context.setValue "definef", FPrimitiveDefinef.instance
-@context.setValue "definem", FPrimitiveDefinem.instance
+@context.setValue :quote, FPrimitiveQuote.instance
+@context.setValue :first, PrimitiveFirst.instance
+@context.setValue :rest, PrimitiveRest.instance
+@context.setValue :cons, PrimitiveCons.instance
+@context.setValue :list, PrimitiveList.instance
+@context.setValue :lambda, FPrimitiveLambda.instance
+@context.setValue :flambda, FPrimitiveFLambda.instance
+@context.setValue :mlambda, FPrimitiveMLambda.instance
+@context.setValue :let, FPrimitiveLet.instance
+@context.setValue :define, FPrimitiveDefine.instance
+@context.setValue :do, FPrimitiveDo.instance
+@context.setValue :if, FPrimitiveIf.instance
+@context.setValue :definef, FPrimitiveDefinef.instance
+@context.setValue :definem, FPrimitiveDefinem.instance
 
-@context.setValue "+", PrimitiveAdd.instance
+@context.setValue :+, PrimitiveAdd.instance
 
 def self.context
     return @context

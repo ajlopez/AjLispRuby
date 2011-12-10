@@ -10,9 +10,9 @@ class TestFPrimitiveDo < Test::Unit::TestCase
 
         assert_not_nil result
         assert_equal 3, result
-		assert_equal 1, AjLisp::context.getValue("a")
-		assert_equal 2, AjLisp::context.getValue("b")
-		assert_equal 3, AjLisp::context.getValue("c")
+		assert_equal 1, AjLisp::context.getValue(:a)
+		assert_equal 2, AjLisp::context.getValue(:b)
+		assert_equal 3, AjLisp::context.getValue(:c)
     end
 end
 
