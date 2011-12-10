@@ -5,6 +5,7 @@ require 'test/unit'
 require "test_list.rb"
 require "test_named_atom.rb"
 require "test_dot_verb_atom.rb"
+require "test_at_constant_atom.rb"
 require "test_context.rb"
 require "test_string_source.rb"
 require "test_file_source.rb"

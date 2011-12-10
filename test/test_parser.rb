@@ -138,6 +138,22 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_nil parser.parseExpression
 	end
+
+	def test_parse_constant_atom		
+		source = StringSource.new "@String"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? AtConstantAtom
+		assert_equal :@String, expr.name
+		assert_equal "String", expr.constant
+		
+		assert_nil parser.parseExpression
+	end
 end
 
 end
+

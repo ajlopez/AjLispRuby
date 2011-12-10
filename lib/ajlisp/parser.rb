@@ -19,6 +19,10 @@ class Parser
                 return DotVerbAtom.new token.value
             end
             
+            if token.value[0,1] == "@"
+                return AtConstantAtom.new token.value
+            end
+            
 			return NamedAtom.new token.value
 		end
 		

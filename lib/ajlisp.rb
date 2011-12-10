@@ -16,6 +16,7 @@ require 'ajlisp/primitive_list.rb'
 require 'ajlisp/primitive_closure.rb'
 
 require 'ajlisp/dot_verb_atom.rb'
+require 'ajlisp/at_constant_atom.rb'
 
 require 'ajlisp/fprimitive.rb'
 require 'ajlisp/fprimitive_quote.rb'

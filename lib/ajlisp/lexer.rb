@@ -36,7 +36,7 @@ class Lexer
 			return nextInteger char
 		end
         
-        if char == ?.
+        if char == ?. or char == ?@
             return nextSpecialAtom char
         end
 		

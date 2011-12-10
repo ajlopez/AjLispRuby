@@ -111,6 +111,16 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_equal true, result
 	end
     
+	def test_evaluate_simple_constant
+		result = evaluateText('@String')
+		assert_equal String, result
+	end
+    
+	def test_evaluate_nested_constant
+		result = evaluateText('@AjLisp::List')
+		assert_equal AjLisp::List, result
+	end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
