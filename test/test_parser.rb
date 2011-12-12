@@ -184,6 +184,20 @@ class TestParser < Test::Unit::TestCase
 		
 		assert_nil parser.parseExpression
 	end
+    
+    def test_parse_empty_list
+		source = StringSource.new "()"
+		lexer = Lexer.new source
+		parser = Parser.new lexer
+		
+		expr = parser.parseExpression
+		
+		assert_not_nil expr
+		assert expr.is_a? List
+		assert expr.is_a? EmptyList
+		
+		assert_nil parser.parseExpression
+    end
 end
 
 end
