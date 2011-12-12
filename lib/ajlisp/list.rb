@@ -79,12 +79,36 @@ class List
             elsif first.is_a? Symbol
                 first = NamedAtom.new first
             end
-                        
+            
+            if array.length == 0
+                return List.new first, nil
+            end
+                 
             return List.new first, make(array)
         end 
         
-        return nil
+        return EmptyList.instance
     end
 end
+
+class EmptyList < List
+    #private_class_method :new
+    
+    @@instance = nil
+    
+    def self.instance
+        @@instance = new unless @@instance
+        return @@instance
+    end
+
+    def to_s
+        return "()"
+    end
+    
+    def isEqualTo(list)
+        return list.is_a? EmptyList
+    end
+end
+
 
 end
