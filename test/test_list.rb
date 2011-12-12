@@ -68,4 +68,14 @@ class TestList < Test::Unit::TestCase
 		list = AjLisp::List.make [:a, :b]
 		assert_equal "(a b)", list.to_s
 	end
+	
+	def test_nested_list_to_string
+		list = AjLisp::List.make [:a, [:b, :c, [:d, :e]], :f]
+		assert_equal "(a (b c (d e)) f)", list.to_s
+	end
+	
+	def test_list_with_numbers_and_strings_to_string
+		list = AjLisp::List.make [:a, ["b", 2, [:d, :e]], :f]
+		assert_equal '(a ("b" 2 (d e)) f)', list.to_s
+	end
 end

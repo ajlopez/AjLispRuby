@@ -14,24 +14,35 @@ class List
         form = AjLisp::evaluate(context, @first)
         form.evaluate(context, self)
     end
-	
-	def to_s
-		result = "("
-		
-		result += @first.to_s
-		
-		rest = @rest
-		
-		while rest
-			result += " "
-			result += rest.first.to_s
-			rest = rest.rest
-		end
-		
-		result += ")"
-		
-		return result
-	end
+    
+    def to_s
+        result = "("
+        
+        first = @first
+        
+        if first.is_a? String
+            result += '"' + first + '"'
+        else
+            result += first.to_s
+        end
+        
+        rest = @rest
+        
+        while rest
+            result += " "
+            first = rest.first
+            if first.is_a? String
+                result += '"' + first + '"'
+            else
+                result += first.to_s
+            end
+            rest = rest.rest
+        end
+        
+        result += ")"
+        
+        return result
+    end
     
     def self.make(array)
         if array and array.length > 0
