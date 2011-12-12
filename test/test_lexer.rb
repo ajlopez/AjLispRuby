@@ -128,6 +128,17 @@ class TestLexer < Test::Unit::TestCase
         assert_nil lexer.nextToken
     end
 
+    def test_get_predicate_atom
+        source = StringSource.new "nil?"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "nil?", token.value
+        assert_equal TokenType::ATOM, token.type
+        assert_nil lexer.nextToken
+    end
+
     def test_get_constant_atom_token
         source = StringSource.new "@String"
         lexer = Lexer.new source

@@ -215,6 +215,20 @@ class TestEvaluate < Test::Unit::TestCase
         assert !evaluateText("(= 1 '(a b (c d)))")
     end
     
+    def test_booleans
+        assert_equal true, evaluateText("true")
+        assert_equal false, evaluateText("false")
+    end
+
+    def test_nil_predicate
+        assert evaluateText("(nil? nil)")
+        assert !evaluateText("(nil? 0)")
+        assert !evaluateText("(nil? false)")
+        assert !evaluateText("(nil? true)")
+        assert !evaluateText("(nil? 'a)")
+        assert !evaluateText("(nil? '(a b))")
+    end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source

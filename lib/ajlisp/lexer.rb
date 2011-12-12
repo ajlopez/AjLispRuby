@@ -80,7 +80,7 @@ class Lexer
 		char = @source.nextChar
 		
 		while char
-			if char =~ /\w/
+			if not char =~ /\s/ and not @@separators.include? char
 				value += char
 				char = @source.nextChar
 			else

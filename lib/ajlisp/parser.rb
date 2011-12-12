@@ -26,6 +26,14 @@ class Parser
             if token.value[0,1] == "'"
                 return List.make [NamedAtom.new("quote"), parseExpression]
             end
+            
+            if token.value == "false"
+                return false
+            end
+            
+            if token.value == "true"
+                return true
+            end
 
 			return NamedAtom.new token.value
 		end

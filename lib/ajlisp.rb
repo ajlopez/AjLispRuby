@@ -38,6 +38,7 @@ require 'ajlisp/primitive_multiply.rb'
 require 'ajlisp/primitive_divide.rb'
 
 require 'ajlisp/primitive_comparisons.rb'
+require 'ajlisp/primitive_predicates.rb'
 
 module AjLisp
 
@@ -68,6 +69,10 @@ module AjLisp
 @context.setValue :">", PrimitiveGreater.instance
 @context.setValue :"<=", PrimitiveLessEqual.instance
 @context.setValue :">=", PrimitiveGreaterEqual.instance
+
+@context.setValue :"nil?", PrimitiveNilPredicate.instance
+@context.setValue :"atom?", PrimitiveAtomPredicate.instance
+@context.setValue :"list?", PrimitiveListPredicate.instance
 
 def self.context
     return @context
