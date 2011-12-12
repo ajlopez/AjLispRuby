@@ -228,6 +228,16 @@ class TestEvaluate < Test::Unit::TestCase
         assert !evaluateText("(nil? 'a)")
         assert !evaluateText("(nil? '(a b))")
     end
+
+    def test_atom_predicate
+        assert evaluateText("(atom? 'a)")
+        assert evaluateText("(atom? 1)")
+        assert evaluateText("(atom? true)")
+        assert evaluateText("(atom? false)")
+        assert evaluateText('(atom? "foo")')
+        assert !evaluateText("(atom? nil)")
+        assert !evaluateText("(atom? '(a b))")
+    end
     
 	def evaluateText(text)
 		source = StringSource.new text
