@@ -21,6 +21,14 @@ class NamedAtom
 	def to_s
 		return @name.to_s
 	end
+    
+    def isEqualTo(atom)
+        if !atom.is_a? NamedAtom
+            return false
+        end
+        
+        return @name == atom.name
+    end
 end
 
 end

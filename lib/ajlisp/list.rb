@@ -44,6 +44,32 @@ class List
         return result
     end
     
+    def isEqualTo(list)
+        if not list.is_a? List
+            return false
+        end
+        
+        if @first != list.first
+            if @first.is_a? List or @first.is_a? NamedAtom
+                if !@first.isEqualTo(list.first)
+                    return false
+                end
+            else
+                return false
+            end
+        end
+        
+        if @rest == nil and list.rest == nil
+            return true
+        end
+        
+        if @rest.is_a? List
+            return @rest.isEqualTo(list.rest)
+        end
+        
+        return false
+    end
+    
     def self.make(array)
         if array and array.length > 0
             first = array.shift

@@ -78,4 +78,15 @@ class TestList < Test::Unit::TestCase
 		list = AjLisp::List.make [:a, ["b", 2, [:d, :e]], :f]
 		assert_equal '(a ("b" 2 (d e)) f)', list.to_s
 	end
+    
+    def test_simple_list_is_equal_to_list
+        list = AjLisp::List.make [:a, :b]
+        list2 = AjLisp::List.make [:a, :b]
+        list3 = AjLisp::List.make [:a, :c]
+        assert list.isEqualTo(list2)
+        assert !list.isEqualTo(list3)
+        assert !list3.isEqualTo(list)
+        assert list.isEqualTo(list)
+        assert list2.isEqualTo(list)
+    end
 end
