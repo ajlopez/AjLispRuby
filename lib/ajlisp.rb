@@ -37,6 +37,8 @@ require 'ajlisp/primitive_subtract.rb'
 require 'ajlisp/primitive_multiply.rb'
 require 'ajlisp/primitive_divide.rb'
 
+require 'ajlisp/primitive_comparisons.rb'
+
 module AjLisp
 
 @context = Context.new
@@ -60,6 +62,12 @@ module AjLisp
 @context.setValue :-, PrimitiveSubtract.instance
 @context.setValue :*, PrimitiveMultiply.instance
 @context.setValue :/, PrimitiveDivide.instance
+
+@context.setValue :"=", PrimitiveEqual.instance
+@context.setValue :"<", PrimitiveLess.instance
+@context.setValue :">", PrimitiveGreater.instance
+@context.setValue :"<=", PrimitiveLessEqual.instance
+@context.setValue :">=", PrimitiveGreaterEqual.instance
 
 def self.context
     return @context

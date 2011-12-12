@@ -151,6 +151,45 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_equal 1, evaluateText('(/ 1)')
 	end
     
+	def test_evaluate_equal
+		assert evaluateText('(= 2 2)')
+		assert !evaluateText('(= 2 3)')
+		assert evaluateText('(= "foo" "foo")')
+		assert !evaluateText('(= "foo" "bar")')
+	end
+    
+	def test_evaluate_less_than
+		assert evaluateText('(< 2 3)')
+		assert !evaluateText('(< 2 2)')
+		assert evaluateText('(< "bar" "foo")')
+		assert !evaluateText('(< "foo" "bar")')
+	end
+    
+	def test_evaluate_greater_than
+		assert evaluateText('(> 4 3)')
+		assert !evaluateText('(> 2 2)')
+		assert evaluateText('(> "foo" "bar")')
+		assert !evaluateText('(> "bar" "foo")')
+	end
+    
+	def test_evaluate_less_equal_than
+		assert evaluateText('(<= 2 3)')
+		assert evaluateText('(<= 2 2)')
+		assert !evaluateText('(<= 2 1)')
+		assert evaluateText('(<= "bar" "foo")')
+		assert evaluateText('(<= "bar" "bar")')
+		assert !evaluateText('(<= "foo" "bar")')
+	end
+    
+	def test_evaluate_greater_equal_than
+		assert evaluateText('(>= 4 3)')
+		assert evaluateText('(>= 4 4)')
+		assert !evaluateText('(>= 1 2)')
+		assert evaluateText('(>= "foo" "bar")')
+		assert evaluateText('(>= "foo" "foo")')
+		assert !evaluateText('(>= "bar" "foo")')
+	end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source

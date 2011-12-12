@@ -44,7 +44,11 @@ class Lexer
 			return nextAtom char
 		end
 		
-		return Token.new char, TokenType::ATOM
+		if char == ?'
+			return Token.new char, TokenType::ATOM
+		end
+		
+		return nextSpecialAtom char
 	end
 	
 	def pushToken(token)
