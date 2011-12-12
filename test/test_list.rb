@@ -63,4 +63,9 @@ class TestList < Test::Unit::TestCase
         assert list.rest.rest.first.is_a? AjLisp::NamedAtom
         assert_equal :foo, list.rest.rest.first.name
     end
+	
+	def test_simple_list_to_string
+		list = AjLisp::List.make [:a, :b]
+		assert_equal "(a b)", list.to_s
+	end
 end

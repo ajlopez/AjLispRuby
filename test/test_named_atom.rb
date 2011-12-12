@@ -14,4 +14,9 @@ class TestNamedAtom < Test::Unit::TestCase
 		context.setValue(:foo, "bar")
 		assert_equal("bar", atom.evaluate(context))
 	end 
+	
+	def test_atom_to_string
+		atom = AjLisp::NamedAtom.new("foo")
+		assert_equal "foo", atom.to_s
+	end
 end

@@ -17,6 +17,10 @@ class NamedAtom
     def evaluate(context)
         return context.getValue(@name)
     end
+	
+	def to_s
+		return @name.to_s
+	end
 end
 
 end
