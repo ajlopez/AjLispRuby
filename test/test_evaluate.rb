@@ -206,6 +206,14 @@ class TestEvaluate < Test::Unit::TestCase
         assert !evaluateText("(= 'a 1)")
         assert !evaluateText("(= 1 'a)")
     end
+
+    def test_equal_on_list
+        assert evaluateText("(= '(a b (c d)) '(a b (c d)))")
+        assert !evaluateText("(= '(a b (c d)) 'b)")
+        assert !evaluateText("(= '(a b (c d)) '(a b))")
+        assert !evaluateText("(= '(a b (c d)) 1)")
+        assert !evaluateText("(= 1 '(a b (c d)))")
+    end
     
 	def evaluateText(text)
 		source = StringSource.new text
