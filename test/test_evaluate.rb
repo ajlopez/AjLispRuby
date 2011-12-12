@@ -58,6 +58,16 @@ class TestEvaluate < Test::Unit::TestCase
 		assert_nil result.rest.rest
 	end
 	
+	def test_evaluate_simple_list_with_character_quote
+		result = evaluateText("(list 'a 'b))")
+		
+		assert_not_nil result
+		assert result.is_a? List
+		assert_equal :a, result.first.name
+		assert_equal :b, result.rest.first.name
+		assert_nil result.rest.rest
+	end
+	
 	def test_evaluate_simple_define
 		result = evaluateText("(define one 1)")
 		
