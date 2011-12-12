@@ -12,6 +12,10 @@ class PrimitiveEqual < Primitive
     end
     
 	def apply(context, args)
+        if args[0].is_a? List or args[0].is_a? NamedAtom
+            return args[0].isEqualTo(args[1])
+        end
+    
 		return args[0] == args[1]
 	end
 end

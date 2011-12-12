@@ -200,6 +200,13 @@ class TestEvaluate < Test::Unit::TestCase
 		assert !evaluateText('(>= "bar" "foo")')
 	end
     
+    def test_equal_on_atoms
+        assert evaluateText("(= 'a 'a)")
+        assert !evaluateText("(= 'a 'b)")
+        assert !evaluateText("(= 'a 1)")
+        assert !evaluateText("(= 1 'a)")
+    end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source
