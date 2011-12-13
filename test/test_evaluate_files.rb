@@ -76,6 +76,17 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal false, evaluateText("(cond (nil 'a))")
         assert_equal "a", evaluateText("(cond (true 'a))").to_s
         assert_equal "b", evaluateText("(cond (nil 'a) (true 'b))").to_s
+        assert_equal "c", evaluateText("(cond (nil 'a) (true 'b 'c))").to_s
+	end
+
+	def test_evaluate_and
+		evaluateFile("cond.lsp")
+		evaluateFile("and.lsp")
+
+        assert_equal true, evaluateText("(and)")
+        assert_equal true, evaluateText("(and true)")
+        assert_equal false, evaluateText("(and true false)")
+        assert_equal false, evaluateText("(and false)")
 	end
 	
 	def evaluateFile(filename)    
