@@ -270,6 +270,12 @@ class TestEvaluate < Test::Unit::TestCase
     def test_cons_nil_nil
         assert_equal "(nil)", evaluateText("(cons nil nil)").to_s
     end
+
+    def test_define_and_evaluate_mylist
+        evaluateText("(define mylist x x)")
+        
+        assert_equal "(1 2 3)", evaluateText("(mylist 1 2 3)").to_s
+    end
     
 	def evaluateText(text)
 		source = StringSource.new text
