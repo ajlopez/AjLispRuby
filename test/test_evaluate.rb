@@ -254,7 +254,7 @@ class TestEvaluate < Test::Unit::TestCase
         assert !evaluateText("(list? 'a)")
     end
 
-    def test_apply
+    def test_define_and_apply_append
         evaluateText("(define append (x y) (if (nil? x) y (cons (first x) (append (rest x) y))))")
         assert_equal "(1 2 3 4 5)", evaluateText("(append (list 1 2) (list 3 4 5))").to_s
         assert_equal "(1 2)", evaluateText("(append (list 1 2) nil)").to_s
