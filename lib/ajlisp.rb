@@ -17,6 +17,7 @@ require 'ajlisp/primitive_closure.rb'
 
 require 'ajlisp/dot_verb_atom.rb'
 require 'ajlisp/at_constant_atom.rb'
+require 'ajlisp/nil_atom.rb'
 
 require 'ajlisp/fprimitive.rb'
 require 'ajlisp/fprimitive_quote.rb'
@@ -59,6 +60,8 @@ module AjLisp
 @context.setValue :definef, FPrimitiveDefinef.instance
 @context.setValue :definem, FPrimitiveDefinem.instance
 
+@context.setValue :nil, NilAtom.instance
+
 @context.setValue :+, PrimitiveAdd.instance
 @context.setValue :-, PrimitiveSubtract.instance
 @context.setValue :*, PrimitiveMultiply.instance
@@ -84,6 +87,22 @@ def self.evaluate(context, item)
     end
         
     return item	
+end
+
+def self.to_s(item)
+    if item.is_a? List or item.is_a? NamedAtom
+        return item.to_s
+    end
+    
+    if item.is_a? String
+        return '"' + item + '"'
+    end 
+    
+    if item == nil
+        return "nil"
+    end
+    
+    return item.to_s
 end
 
 end

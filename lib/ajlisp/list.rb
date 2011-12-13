@@ -19,23 +19,15 @@ class List
         result = "("
         
         first = @first
-        
-        if first.is_a? String
-            result += '"' + first + '"'
-        else
-            result += first.to_s
-        end
+
+        result += AjLisp::to_s(first)
         
         rest = @rest
         
         while rest
             result += " "
             first = rest.first
-            if first.is_a? String
-                result += '"' + first + '"'
-            else
-                result += first.to_s
-            end
+            result += AjLisp::to_s(first)
             rest = rest.rest
         end
         

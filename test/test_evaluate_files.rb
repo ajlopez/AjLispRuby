@@ -48,6 +48,13 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal "((1) (2) (3))", evaluateText("(mapfirst list (list 1 2 3))").to_s
         assert_equal "(1 2 3)", evaluateText("(mapfirst first (quote ((1) (2) (3))))").to_s
 	end
+
+	def test_evaluate_mapcond
+		evaluateFile("mapcond.lsp")
+		
+        assert_equal "((2))", evaluateText("(mapcond list? (list 1 (list 2) 3))").to_s
+        assert_equal "(nil)", evaluateText("(mapcond nil? (list 1 nil 3))").to_s
+	end
 	
 	def evaluateFile(filename)    
 		source = FileSource.new File.expand_path(filename, File.dirname(__FILE__))

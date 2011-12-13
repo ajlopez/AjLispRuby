@@ -34,6 +34,10 @@ class Parser
             if token.value == "true"
                 return true
             end
+            
+            if token.value == "nil"
+                return NilAtom.instance
+            end
 
 			return NamedAtom.new token.value
 		end

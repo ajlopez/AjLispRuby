@@ -263,6 +263,14 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal "(b b b b)", evaluateText("(append x x)").to_s
     end
     
+    def test_nil_to_s
+        assert_equal "nil", AjLisp::to_s(evaluateText("nil"))
+    end
+
+    def test_cons_nil_nil
+        assert_equal "(nil)", evaluateText("(cons nil nil)").to_s
+    end
+    
 	def evaluateText(text)
 		source = StringSource.new text
 		lexer = Lexer.new source

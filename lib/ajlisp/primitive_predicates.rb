@@ -12,7 +12,7 @@ class PrimitiveNilPredicate < Primitive
     end
     
 	def apply(context, args)
-        return args[0] == nil
+        return ((args[0] == nil) or (args[0].is_a? NilAtom))
 	end
 end
 
