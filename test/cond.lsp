@@ -1,0 +1,1 @@
+(definem cond lst (if (nil? lst) false (list 'if (first (first lst)) (cons 'do (rest (first lst))) (cons 'cond (rest lst)))))

@@ -59,8 +59,12 @@ class Parser
 				elements.push parseExpression
 				token = @lexer.nextToken
 			end
-			
-			return List::make elements
+
+            if elements.length == 0
+                return EmptyList.instance
+            else
+                return List::make elements
+            end
 		end
 	end
 end

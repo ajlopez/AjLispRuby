@@ -46,3 +46,4 @@ class PrimitiveClosure < Primitive
 end
 
 end
+

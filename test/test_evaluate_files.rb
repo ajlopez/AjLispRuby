@@ -68,6 +68,15 @@ class TestEvaluate < Test::Unit::TestCase
 		
         assert_equal "a", evaluateText("(myfirst '(a b c))").to_s
 	end
+
+	def test_evaluate_cond
+		evaluateFile("cond.lsp")
+
+        assert_equal false, evaluateText("(cond)")
+        assert_equal false, evaluateText("(cond (nil 'a))")
+        assert_equal "a", evaluateText("(cond (true 'a))").to_s
+        assert_equal "b", evaluateText("(cond (nil 'a) (true 'b))").to_s
+	end
 	
 	def evaluateFile(filename)    
 		source = FileSource.new File.expand_path(filename, File.dirname(__FILE__))

@@ -78,8 +78,9 @@ class List
                  
             return List.new first, make(array)
         end 
-        
-        return EmptyList.instance
+ 
+        return nil
+#        return EmptyList.instance
     end
 end
 

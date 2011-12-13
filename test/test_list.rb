@@ -95,8 +95,7 @@ class TestList < Test::Unit::TestCase
     def test_empty_list
         list = List.make []
         
-        assert list.is_a? EmptyList
-        assert_equal "()", list.to_s
+        assert_nil list
     end
 end
 
