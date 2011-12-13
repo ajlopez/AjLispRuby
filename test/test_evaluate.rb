@@ -253,6 +253,15 @@ class TestEvaluate < Test::Unit::TestCase
         assert !evaluateText("(list? 1)")
         assert !evaluateText("(list? 'a)")
     end
+
+    def test_apply
+        evaluateText("(define append (x y) (if (nil? x) y (cons (first x) (append (rest x) y))))")
+        assert_equal "(1 2 3 4 5)", evaluateText("(append (list 1 2) (list 3 4 5))").to_s
+        assert_equal "(1 2)", evaluateText("(append (list 1 2) nil)").to_s
+        evaluateText("(define x '(b b))")
+        assert_equal "(b b)", evaluateText("(append x nil)").to_s
+        assert_equal "(b b b b)", evaluateText("(append x x)").to_s
+    end
     
 	def evaluateText(text)
 		source = StringSource.new text
