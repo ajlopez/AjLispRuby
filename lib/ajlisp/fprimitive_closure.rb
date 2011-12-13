@@ -21,13 +21,17 @@ class FPrimitiveClosure < FPrimitive
     
         if @arguments
             newcontext = AjLisp::Context.new newcontext
-            values = args
-            names = @arguments
             
-            args.each do |arg|
-                name = names.first.name
-                newcontext.setValue name, arg
-                names = names.rest
+            if @arguments.is_a? NamedAtom
+                newcontext.setValue @arguments.name, AjLisp::List.make(args)
+            else
+                names = @arguments
+            
+                args.each do |arg|
+                    name = names.first.name
+                    newcontext.setValue name, arg
+                    names = names.rest
+                end
             end
         end
         

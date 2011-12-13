@@ -1,0 +1,1 @@
+(define definem (mlambda x (list 'define (first x) (cons 'mlambda (rest x)))))

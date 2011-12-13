@@ -55,6 +55,19 @@ class TestEvaluate < Test::Unit::TestCase
         assert_equal "((2))", evaluateText("(mapcond list? (list 1 (list 2) 3))").to_s
         assert_equal "(nil)", evaluateText("(mapcond nil? (list 1 nil 3))").to_s
 	end
+
+	def test_evaluate_definem
+		evaluateFile("definem.lsp")
+
+        evaluateText("(definem myquote (x) (list 'quote x))")
+		
+        assert_equal "x", evaluateText("(myquote x)").to_s
+        assert_equal "(1 2 3)", evaluateText("(myquote (1 2 3))").to_s
+
+        evaluateText("(definem myfirst (x) (list 'first x))")
+		
+        assert_equal "a", evaluateText("(myfirst '(a b c))").to_s
+	end
 	
 	def evaluateFile(filename)    
 		source = FileSource.new File.expand_path(filename, File.dirname(__FILE__))
