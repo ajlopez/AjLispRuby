@@ -4,6 +4,7 @@ require 'ajlisp/named_atom.rb'
 require 'ajlisp/context.rb'
 require 'ajlisp/string_source.rb'
 require 'ajlisp/file_source.rb'
+require 'ajlisp/input_source.rb'
 require 'ajlisp/token.rb'
 require 'ajlisp/lexer.rb'
 require 'ajlisp/parser.rb'
@@ -103,6 +104,19 @@ def self.to_s(item)
     end
     
     return item.to_s
+end
+
+def self.repl
+    source = InputSource.new
+    lexer = Lexer.new(source)
+    parser = Parser.new(lexer)
+
+    expr = parser.parseExpression
+   
+    while expr
+        puts evaluate(self.context, expr)
+        expr = parser.parseExpression        
+    end 
 end
 
 end

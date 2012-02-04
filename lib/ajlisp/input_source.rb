@@ -1,9 +1,9 @@
 
 module AjLisp
 
-	class StringSource	
-		def initialize(text)
-			@text = text
+	class InputSource	
+		def initialize
+			@line = ""
 			@position = 0
 			@chars = []
 		end
@@ -15,7 +15,16 @@ module AjLisp
 				return char
 			end
 		
-			char = @text[@position]
+			while @line.length <= @position
+				@line = gets
+				@position = 0
+
+				if @line == nil
+						return nil
+				end				
+			end
+
+			char = @line[@position]
 			@position += 1
 			return char
 		end
