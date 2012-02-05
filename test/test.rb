@@ -36,4 +36,4 @@ require "test_fprimitive_macro_closure.rb"
 
 require "test_evaluate"
 require "test_evaluate_files"
-
+require "test_load"

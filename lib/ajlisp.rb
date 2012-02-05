@@ -42,6 +42,8 @@ require 'ajlisp/primitive_divide.rb'
 require 'ajlisp/primitive_comparisons.rb'
 require 'ajlisp/primitive_predicates.rb'
 
+require 'ajlisp/primitive_load.rb'
+
 module AjLisp
 
 @context = Context.new
@@ -60,6 +62,7 @@ module AjLisp
 @context.setValue :if, FPrimitiveIf.instance
 @context.setValue :definef, FPrimitiveDefinef.instance
 @context.setValue :definem, FPrimitiveDefinem.instance
+@context.setValue :load, PrimitiveLoad.instance
 
 @context.setValue :nil, NilAtom.instance
 
