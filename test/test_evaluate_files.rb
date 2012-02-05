@@ -97,6 +97,15 @@ class TestEvaluate < Test::Unit::TestCase
     evaluateFile("backquote.lsp")
 
     assert_equal "(a b c)", evaluateText("(backquote (a b c))").to_s
+    assert_equal "(a (b c) d)", evaluateText("(backquote (a (b c) d))").to_s
+    evaluateText("(define x '(b b))")
+    assert_equal "(b b)", evaluateText("(backquote (unquote x))").to_s
+    assert_equal "((b b))", evaluateText("(backquote ((unquote x)))").to_s
+    assert_equal "(a (b b) c)", evaluateText("(backquote (a (unquote x) c))").to_s
+    assert_equal "(a ((b b)) c)", evaluateText("(backquote (a ((unquote x)) c))").to_s
+
+    assert_equal "(b b)", evaluateText("(backquote ((unquote-slice x)))").to_s
+    assert_equal "(a b b c)", evaluateText("(backquote (a (unquote-slice x) c))").to_s
   end
 
   def evaluateFile(filename)  
