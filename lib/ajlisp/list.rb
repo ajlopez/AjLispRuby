@@ -80,7 +80,6 @@ class List
         end 
  
         return nil
-#        return EmptyList.instance
     end
 end
 
