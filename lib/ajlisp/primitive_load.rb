@@ -11,20 +11,22 @@ module AjLisp
       return @@instance
     end
 
-  	def apply(context, args)
-  		filename = args[0]
-      source = FileSource.new filename # File.expand_path(filename, File.dirname(__FILE__))
-      lexer = Lexer.new source
-      parser = Parser.new lexer
-      expr = parser.parseExpression
-      
+  	def apply(context, args)       
       result = nil
       
-      while expr
-        result = AjLisp::evaluate AjLisp::context, expr
+      args.each do |filename|
+        source = FileSource.new filename # File.expand_path(filename, File.dirname(__FILE__))
+        lexer = Lexer.new source
+        parser = Parser.new lexer
         expr = parser.parseExpression
+        
+        
+        while expr
+          result = AjLisp::evaluate AjLisp::context, expr
+          expr = parser.parseExpression
+        end
       end
-      
+        
       return result
   	end
   end

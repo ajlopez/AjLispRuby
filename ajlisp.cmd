@@ -1,0 +1,1 @@
+ruby -Ilib;test ./ajlisprepl.rb %*
