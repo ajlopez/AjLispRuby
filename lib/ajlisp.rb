@@ -44,6 +44,8 @@ require 'ajlisp/primitive_predicates.rb'
 
 require 'ajlisp/primitive_load.rb'
 
+require 'ajlisp/primitive_eval.rb'
+
 module AjLisp
 
 @context = Context.new
@@ -63,6 +65,7 @@ module AjLisp
 @context.setValue :definef, FPrimitiveDefinef.instance
 @context.setValue :definem, FPrimitiveDefinem.instance
 @context.setValue :load, PrimitiveLoad.instance
+@context.setValue :eval, PrimitiveEval.instance
 
 @context.setValue :nil, NilAtom.instance
 

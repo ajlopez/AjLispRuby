@@ -21,6 +21,8 @@ require "test_primitive_closure.rb"
 
 require "test_primitive_add.rb"
 
+require "test_primitive_eval"
+
 require "test_fprimitive_quote.rb"
 require "test_fprimitive_lambda.rb"
 require "test_fprimitive_let.rb"
@@ -37,3 +39,4 @@ require "test_fprimitive_macro_closure.rb"
 require "test_evaluate"
 require "test_evaluate_files"
 require "test_load"
+
