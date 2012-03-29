@@ -44,7 +44,7 @@ class Lexer
 			return nextAtom char
 		end
 		
-		if char == ?'
+		if char == ?' or char == ?` or char == ?,
 			return Token.new char, TokenType::ATOM
 		end
 		

@@ -184,7 +184,55 @@ module AjLisp
 			
 			assert_nil parser.parseExpression
 		end
+
+		def test_parse_backquoted_list
+			source = StringSource.new "`(a b)"
+			lexer = Lexer.new source
+			parser = Parser.new lexer
+			
+			expr = parser.parseExpression
+			
+			assert_not_nil expr
+			assert expr.is_a? List
+			assert_equal :backquote, expr.first.name
+	        assert_equal :a, expr.rest.first.first.name
+	        assert_equal :b, expr.rest.first.rest.first.name
+			
+			assert_nil parser.parseExpression
+		end
 	    
+		def test_parse_backquoted_atom
+			source = StringSource.new "`a"
+			lexer = Lexer.new source
+			parser = Parser.new lexer
+			
+			expr = parser.parseExpression
+			
+			assert_not_nil expr
+			assert expr.is_a? List
+			assert_equal :backquote, expr.first.name
+	        assert_equal :a, expr.rest.first.name
+	        assert_nil expr.rest.rest
+			
+			assert_nil parser.parseExpression
+		end
+	    
+		def test_parse_unquoted_list
+			source = StringSource.new ",(a b)"
+			lexer = Lexer.new source
+			parser = Parser.new lexer
+			
+			expr = parser.parseExpression
+			
+			assert_not_nil expr
+			assert expr.is_a? List
+			assert_equal :unquote, expr.first.name
+	        assert_equal :a, expr.rest.first.first.name
+	        assert_equal :b, expr.rest.first.rest.first.name
+			
+			assert_nil parser.parseExpression
+		end
+        
 	    def test_parse_empty_list
 			source = StringSource.new "()"
 			lexer = Lexer.new source

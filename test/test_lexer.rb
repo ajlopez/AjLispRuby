@@ -95,6 +95,60 @@ class TestLexer < Test::Unit::TestCase
         assert_nil lexer.nextToken
     end
     
+    def test_get_quote_and_atom
+        source = StringSource.new "'a"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "'", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "a", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        assert_nil lexer.nextToken
+    end
+    
+    def test_get_backquote_and_atom
+        source = StringSource.new "`a"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "`", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "a", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        assert_nil lexer.nextToken
+    end
+    
+    def test_get_unquote_and_atom
+        source = StringSource.new ",a"
+        lexer = Lexer.new source
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal ",", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        token = lexer.nextToken
+        
+        assert_not_nil token
+        assert_equal "a", token.value
+        assert_equal TokenType::ATOM, token.type
+
+        assert_nil lexer.nextToken
+    end
+    
     def test_get_string
         source = StringSource.new '"foo"'
         lexer = Lexer.new source
