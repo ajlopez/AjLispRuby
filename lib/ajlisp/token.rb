@@ -16,7 +16,7 @@ class TokenType
 	REAL = 2
 	STRING = 3
 	ATOM = 4
-	SEPARATOR = 5
+	DELIMITER = 5
 end
 
 end

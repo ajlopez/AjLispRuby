@@ -51,13 +51,13 @@ class TestLexer < Test::Unit::TestCase
         
         assert_not_nil token
         assert_equal "(", token.value
-        assert_equal TokenType::SEPARATOR, token.type
+        assert_equal TokenType::DELIMITER, token.type
 
         token = lexer.nextToken
         
         assert_not_nil token
         assert_equal ")", token.value
-        assert_equal TokenType::SEPARATOR, token.type
+        assert_equal TokenType::DELIMITER, token.type
         
         assert_nil lexer.nextToken
     end

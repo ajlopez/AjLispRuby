@@ -44,5 +44,24 @@ module AjLisp
                 expect(lexer.nextToken).to be_nil
             end
         end
+        
+        context "delimiters" do
+            source = StringSource.new "()"
+            lexer = Lexer.new source
+
+            token = lexer.nextToken
+
+            expect(token).to_not be_nil
+            expect(token.value).to eq("(")
+            expect(token.type).to eq(TokenType::DELIMITER)
+
+            token = lexer.nextToken
+
+            expect(token).to_not be_nil
+            expect(token.value).to eq(")")
+            expect(token.type).to eq(TokenType::DELIMITER)
+
+            expect(lexer.nextToken).to be_nil
+        end
     end
 end

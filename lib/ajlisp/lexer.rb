@@ -29,7 +29,7 @@ class Lexer
 		end
 		
 		if @@separators.include? char
-			return Token.new char, TokenType::SEPARATOR
+			return Token.new char, TokenType::DELIMITER
 		end
 
 		if char =~ /\d/

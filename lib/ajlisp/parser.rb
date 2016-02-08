@@ -58,11 +58,11 @@ class Parser
             return token.value
         end
         
-        if token.type == TokenType::SEPARATOR and token.value == "("
+        if token.type == TokenType::DELIMITER and token.value == "("
             elements = []
             token = @lexer.nextToken
             
-            while not (token.type == TokenType::SEPARATOR and token.value == ")")
+            while not (token.type == TokenType::DELIMITER and token.value == ")")
                 @lexer.pushToken token
                 elements.push parseExpression
                 token = @lexer.nextToken
