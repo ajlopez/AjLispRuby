@@ -46,22 +46,24 @@ module AjLisp
         end
         
         context "delimiters" do
-            source = StringSource.new "()"
-            lexer = Lexer.new source
+            it "get parenthesis" do
+                source = StringSource.new "()"
+                lexer = Lexer.new source
 
-            token = lexer.nextToken
+                token = lexer.nextToken
 
-            expect(token).to_not be_nil
-            expect(token.value).to eq("(")
-            expect(token.type).to eq(TokenType::DELIMITER)
+                expect(token).to_not be_nil
+                expect(token.value).to eq("(")
+                expect(token.type).to eq(TokenType::DELIMITER)
 
-            token = lexer.nextToken
+                token = lexer.nextToken
 
-            expect(token).to_not be_nil
-            expect(token.value).to eq(")")
-            expect(token.type).to eq(TokenType::DELIMITER)
+                expect(token).to_not be_nil
+                expect(token.value).to eq(")")
+                expect(token.type).to eq(TokenType::DELIMITER)
 
-            expect(lexer.nextToken).to be_nil
+                expect(lexer.nextToken).to be_nil
+            end
         end
     end
 end
